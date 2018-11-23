@@ -174,22 +174,22 @@ RUN git clone https://github.com/genome/bam-readcount.git /usr/local/bam-readcou
     && cd /usr/local/bam-readcount/ \
     && chmod -R 777 /usr/local/bam-readcount/ \
     && cd /usr/local/bam-readcount/ \
-	  && cmake ./ \
-	  && make
+    && cmake ./ \
+    && make
 
 # Install HISAT2
 ###
 ADD http://ccb.jhu.edu/software/hisat2/dl/hisat2-2.1.0-Linux_x86_64.zip /usr/local/hisat2.zip
 RUN unzip /usr/local/hisat2.zip -d /usr/local/ \
     && chmod 777 -R /usr/local/hisat2-2.1.0 \
-	  && ln -s /usr/local/hisat2-2.1.0/hisat* /usr/local/bin/ \
+    && ln -s /usr/local/hisat2-2.1.0/hisat* /usr/local/bin/ \
     && rm /usr/local/hisat2.zip
 
 # Install StringTie
 ###
 ADD http://ccb.jhu.edu/software/stringtie/dl/stringtie-1.3.5.Linux_x86_64.tar.gz /usr/local/stringtie.tar.gz
 RUN tar -xzvf /usr/local/stringtie.tar.gz -C /usr/local/ \
-	  && chmod 777 -R /usr/local/stringtie-1.3.5.Linux_x86_64/ \
+    && chmod 777 -R /usr/local/stringtie-1.3.5.Linux_x86_64/ \
     && ln -s /usr/local/stringtie-1.3.5.Linux_x86_64/stringtie /usr/local/bin/ \
     && rm /usr/local/stringtie.tar.gz
 
@@ -197,9 +197,9 @@ RUN tar -xzvf /usr/local/stringtie.tar.gz -C /usr/local/ \
 ###
 ADD http://ccb.jhu.edu/software/stringtie/dl/gffcompare-0.10.6.Linux_x86_64.tar.gz /usr/local/gffcompare.tar.gz
 RUN tar -xzvf /usr/local/gffcompare.tar.gz -C /usr/local/ \
-	&& chmod 777 -R /usr/local/gffcompare-0.10.6.Linux_x86_64 \
-	&& ln -s /usr/local/gffcompare-0.10.6.Linux_x86_64/gffcompare /usr/local/bin/ \
-  && rm /usr/local/gffcompare.tar.gz
+    && chmod 777 -R /usr/local/gffcompare-0.10.6.Linux_x86_64 \
+    && ln -s /usr/local/gffcompare-0.10.6.Linux_x86_64/gffcompare /usr/local/bin/ \
+    && rm /usr/local/gffcompare.tar.gz
 
 # Install htseq-count
 ###
@@ -210,18 +210,19 @@ RUN pip install -U HTSeq \
 ###
 ADD https://ccb.jhu.edu/software/tophat/downloads/tophat-2.1.1.Linux_x86_64.tar.gz /usr/local/tophat.tar.gz
 RUN tar -zxvf /usr/local/tophat.tar.gz -C /usr/local/ \
-	&& chmod 777 -R /usr/local/tophat-2.1.1.Linux_x86_64 \
-  && rm AUTHORS README LICENSE \
-	&& ln -s /usr/local/tophat-2.1.1.Linux_x86_64/* /usr/local/bin/ \
-  && rm /usr/local/tophat.tar.gz
+    && chmod 777 -R /usr/local/tophat-2.1.1.Linux_x86_64 \
+    && cd /usr/local/tophat-2.1.1.Linux_x86_64 \
+    && rm AUTHORS README LICENSE \
+    && ln -s /usr/local/tophat-2.1.1.Linux_x86_64/* /usr/local/bin/ \
+    && rm /usr/local/tophat.tar.gz
 
 # Install kallisto
 ###
 ADD https://github.com/pachterlab/kallisto/releases/download/v0.44.0/kallisto_linux-v0.44.0.tar.gz /usr/local/kallisto.tar.gz
 RUN tar -zxvf /usr/local/kallisto.tar.gz -C /usr/local/ \
-	&& chmod 777 -R /usr/local/kallisto_linux-v0.44.0 \
-	&& ln -s /usr/local/kallisto_linux-v0.44.0/kallisto /usr/local/bin/ \
-  && rm /usr/local/kallisto.tar.gz
+    && chmod 777 -R /usr/local/kallisto_linux-v0.44.0 \
+    && ln -s /usr/local/kallisto_linux-v0.44.0/kallisto /usr/local/bin/ \
+    && rm /usr/local/kallisto.tar.gz
 
 # Install MultiQC
 ###
@@ -231,21 +232,21 @@ RUN pip3 install -U multiqc
 ###
 ADD https://github.com/seqan/flexbar/releases/download/v3.4.0/flexbar-3.4.0-linux.tar.gz /usr/local/flexbar.tar.gz
 RUN tar -xzvf /usr/local/flexbar.tar.gz -C /usr/local/ \
-	&& chmod 777 -R /usr/local/flexbar-3.4.0 \
-	&& export LD_LIBRARY_PATH=/usr/local/flexbar-3.4.0-linux:$LD_LIBRARY_PATH \
-  && echo "export LD_LIBRARY_PATH=/usr/local/flexbar-3.4.0-linux:$LD_LIBRARY_PATH" >> /etc/bash.bashrc \
-	&& ln -s /usr/local/flexbar-3.4.0/flexbar /usr/local/bin/ \
-  && rm /usr/local/flexbar.tar.gz
+    && chmod 777 -R /usr/local/flexbar-3.4.0 \
+    && export LD_LIBRARY_PATH=/usr/local/flexbar-3.4.0-linux:$LD_LIBRARY_PATH \
+    && echo "export LD_LIBRARY_PATH=/usr/local/flexbar-3.4.0-linux:$LD_LIBRARY_PATH" >> /etc/bash.bashrc \
+    && ln -s /usr/local/flexbar-3.4.0/flexbar /usr/local/bin/ \
+    && rm /usr/local/flexbar.tar.gz
 
 # Install Regtools
 RUN git clone https://github.com/griffithlab/regtools.git /usr/local/regtools \
     && chmod 777 -R /usr/local/regtools \
     && cd /usr/local/regtools \
     && mkdir build \
-	  && cd build/ \
-	  && cmake .. \
-	  && make \
-	  && ln -s /usr/local/regtools/build/regtools /usr/local/bin/
+    && cd build/ \
+    && cmake .. \
+    && make \
+    && ln -s /usr/local/regtools/build/regtools /usr/local/bin/
 
 # Install RSeQC
 ###
