@@ -102,10 +102,10 @@ RUN unzip /usr/local/Trimmomatic-0.38.zip -d /usr/local/ \
 
 # Install FastQC
 ########
-ADD https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8.zip /usr/local/fastqc.zip
+ADD https://github.com/s-andrews/FastQC/archive/v0.11.8.zip /usr/local/fastqc.zip
 RUN unzip /usr/local/fastqc.zip -d /usr/local/ \
-    && chmod -R 777 /usr/local/FastQC \
-    && ln -s /usr/local/FastQC/fastqc /usr/local/bin/ \
+    && chmod -R 777 /usr/local/FastQC-0.11.8 \
+    && ln -s /usr/local/FastQC-0.11.8/fastqc /usr/local/bin/ \
     && rm /usr/local/fastqc.zip
 
 # Install IGV
@@ -232,10 +232,10 @@ RUN pip3 install -U multiqc
 ###
 ADD https://github.com/seqan/flexbar/releases/download/v3.4.0/flexbar-3.4.0-linux.tar.gz /usr/local/flexbar.tar.gz
 RUN tar -xzvf /usr/local/flexbar.tar.gz -C /usr/local/ \
-    && chmod 777 -R /usr/local/flexbar-3.4.0 \
+    && chmod 777 -R /usr/local/flexbar-3.4.0-linux \
     && export LD_LIBRARY_PATH=/usr/local/flexbar-3.4.0-linux:$LD_LIBRARY_PATH \
     && echo "export LD_LIBRARY_PATH=/usr/local/flexbar-3.4.0-linux:$LD_LIBRARY_PATH" >> /etc/bash.bashrc \
-    && ln -s /usr/local/flexbar-3.4.0/flexbar /usr/local/bin/ \
+    && ln -s /usr/local/flexbar-3.4.0-linux/flexbar /usr/local/bin/ \
     && rm /usr/local/flexbar.tar.gz
 
 # Install Regtools
@@ -272,10 +272,10 @@ RUN git clone https://github.com/gpertea/gclib /usr/local/gclib \
 
 # Install SeqMonk
 ###
-ADD https://www.bioinformatics.babraham.ac.uk/projects/seqmonk/seqmonk_v1.43.0.zip /usr/local/seqmonk.zip
+ADD https://github.com/s-andrews/SeqMonk/archive/v1.43.0.zip /usr/local/seqmonk.zip
 RUN unzip /usr/local/seqmonk.zip -d /usr/local/ \
-    && chmod 777 -R /usr/local/SeqMonk \
-    && ln -s /usr/local/SeqMonk/seqmonk /usr/local/bin/ \
+    && chmod 777 -R /usr/local/SeqMonk-1.43.0 \
+    && ln -s /usr/local/SeqMonk-1.43.0/seqmonk /usr/local/bin/ \
     && rm /usr/local/seqmonk.zip
 
 ## Create user transcriptomics
