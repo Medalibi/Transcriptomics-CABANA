@@ -105,7 +105,7 @@ RUN unzip /usr/local/Trimmomatic-0.38.zip -d /usr/local/ \
 ADD http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8.zip /usr/local/fastqc.zip
 RUN unzip /usr/local/fastqc.zip -d /usr/local/ \
     && chmod -R 777 /usr/local/FastQC \
-    && ln -s /usr/local/FastQCfastqc /usr/local/bin/ \
+    && ln -s /usr/local/FastQC/fastqc /usr/local/bin/ \
     && rm /usr/local/fastqc.zip
 
 # Install IGV
